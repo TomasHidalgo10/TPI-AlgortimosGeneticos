@@ -1,0 +1,110 @@
+{
+  "modelo_base": {
+    "accuracy": 0.7361778846153846,
+    "precision_desocupado": 0.14440993788819875,
+    "recall_desocupado": 0.7303664921465969,
+    "f1_desocupado": 0.2411408815903198,
+    "f1_macro": 0.5407377439411865,
+    "n_variables": 87,
+    "tiempo_entrenamiento": 0.6929717063903809,
+    "matriz_confusion": [
+      [
+        4621,
+        1653
+      ],
+      [
+        103,
+        279
+      ]
+    ]
+  },
+  "modelo_optimizado": {
+    "accuracy": 0.7522536057692307,
+    "precision_desocupado": 0.14628699050809604,
+    "recall_desocupado": 0.6858638743455497,
+    "f1_desocupado": 0.24114127933732168,
+    "f1_macro": 0.5465514278902247,
+    "n_variables": 50,
+    "tiempo_entrenamiento": 0.834383487701416,
+    "matriz_confusion": [
+      [
+        4745,
+        1529
+      ],
+      [
+        120,
+        262
+      ]
+    ]
+  },
+  "algoritmo_genetico": {
+    "mejor_fitness": 0.2294123434007683,
+    "n_variables_total": 87,
+    "n_variables_seleccionadas": 50,
+    "variables_seleccionadas": [
+      "CH04_1",
+      "CH04_2",
+      "CH07_3",
+      "CH07_5",
+      "CH08_3",
+      "CH08_4",
+      "CH08_12",
+      "CH08_13",
+      "CH03_1",
+      "CH03_3",
+      "CH03_5",
+      "CH03_8",
+      "CH03_9",
+      "CH09_1",
+      "CH09_2",
+      "CH15_2",
+      "CH15_4",
+      "CH15_5",
+      "AGLOMERADO_2",
+      "AGLOMERADO_3",
+      "AGLOMERADO_6",
+      "AGLOMERADO_7",
+      "AGLOMERADO_9",
+      "AGLOMERADO_10",
+      "AGLOMERADO_13",
+      "AGLOMERADO_14",
+      "AGLOMERADO_17",
+      "AGLOMERADO_18",
+      "AGLOMERADO_19",
+      "AGLOMERADO_20",
+      "AGLOMERADO_22",
+      "AGLOMERADO_25",
+      "AGLOMERADO_29",
+      "AGLOMERADO_30",
+      "AGLOMERADO_33",
+      "AGLOMERADO_36",
+      "AGLOMERADO_38",
+      "AGLOMERADO_40",
+      "AGLOMERADO_41",
+      "AGLOMERADO_43",
+      "AGLOMERADO_45",
+      "AGLOMERADO_48",
+      "AGLOMERADO_51",
+      "AGLOMERADO_54",
+      "AGLOMERADO_55",
+      "AGLOMERADO_56",
+      "AGLOMERADO_58",
+      "AGLOMERADO_91",
+      "CH06",
+      "NIVEL_ED"
+    ],
+    "tiempo_evolucion": 2141.6252856254578,
+    "parametros": {
+      "tamano_poblacion": 30,
+      "numero_generaciones": 30,
+      "probabilidad_cruce": 0.8,
+      "probabilidad_mutacion": 0.1,
+      "tamano_torneo": 3,
+      "numero_elite": 2,
+      "penalizacion_variables": 0.005
+    }
+  },
+  "datos": {
+    "total_original": 71322,
+    "total_pea": 33384,
+    "ocupados": 

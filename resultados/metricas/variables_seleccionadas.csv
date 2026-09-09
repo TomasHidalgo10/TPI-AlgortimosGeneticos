@@ -1,0 +1,88 @@
+﻿Variable codificada,Variable original,Seleccionada,Descripción,Tipo
+CH04_1,CH04,Sí,Sexo,categorica
+CH04_2,CH04,Sí,Sexo,categorica
+CH07_1,CH07,No,Estado civil,categorica
+CH07_2,CH07,No,Estado civil,categorica
+CH07_3,CH07,Sí,Estado civil,categorica
+CH07_4,CH07,No,Estado civil,categorica
+CH07_5,CH07,Sí,Estado civil,categorica
+CH08_1,CH08,No,Cobertura médica,categorica
+CH08_2,CH08,No,Cobertura médica,categorica
+CH08_3,CH08,Sí,Cobertura médica,categorica
+CH08_4,CH08,Sí,Cobertura médica,categorica
+CH08_12,CH08,Sí,Cobertura médica,categorica
+CH08_13,CH08,Sí,Cobertura médica,categorica
+CH08_23,CH08,No,Cobertura médica,categorica
+CH03_1,CH03,Sí,Relación de parentesco con el jefe/a del hogar,categorica
+CH03_2,CH03,No,Relación de parentesco con el jefe/a del hogar,categorica
+CH03_3,CH03,Sí,Relación de parentesco con el jefe/a del hogar,categorica
+CH03_4,CH03,No,Relación de parentesco con el jefe/a del hogar,categorica
+CH03_5,CH03,Sí,Relación de parentesco con el jefe/a del hogar,categorica
+CH03_6,CH03,No,Relación de parentesco con el jefe/a del hogar,categorica
+CH03_7,CH03,No,Relación de parentesco con el jefe/a del hogar,categorica
+CH03_8,CH03,Sí,Relación de parentesco con el jefe/a del hogar,categorica
+CH03_9,CH03,Sí,Relación de parentesco con el jefe/a del hogar,categorica
+CH03_10,CH03,No,Relación de parentesco con el jefe/a del hogar,categorica
+CH09_1,CH09,Sí,Asistencia a establecimiento educativo,categorica
+CH09_2,CH09,Sí,Asistencia a establecimiento educativo,categorica
+CH15_1,CH15,No,Lugar de nacimiento,categorica
+CH15_2,CH15,Sí,Lugar de nacimiento,categorica
+CH15_3,CH15,No,Lugar de nacimiento,categorica
+CH15_4,CH15,Sí,Lugar de nacimiento,categorica
+CH15_5,CH15,Sí,Lugar de nacimiento,categorica
+AGLOMERADO_2,AGLOMERADO,Sí,Aglomerado urbano,categorica
+AGLOMERADO_3,AGLOMERADO,Sí,Aglomerado urbano,categorica
+AGLOMERADO_4,AGLOMERADO,No,Aglomerado urbano,categorica
+AGLOMERADO_5,AGLOMERADO,No,Aglomerado urbano,categorica
+AGLOMERADO_6,AGLOMERADO,Sí,Aglomerado urbano,categorica
+AGLOMERADO_7,AGLOMERADO,Sí,Aglomerado urbano,categorica
+AGLOMERADO_8,AGLOMERADO,No,Aglomerado urbano,categorica
+AGLOMERADO_9,AGLOMERADO,Sí,Aglomerado urbano,categorica
+AGLOMERADO_10,AGLOMERADO,Sí,Aglomerado urbano,categorica
+AGLOMERADO_12,AGLOMERADO,No,Aglomerado urbano,categorica
+AGLOMERADO_13,AGLOMERADO,Sí,Aglomerado urbano,categorica
+AGLOMERADO_14,AGLOMERADO,Sí,Aglomerado urbano,categorica
+AGLOMERADO_15,AGLOMERADO,No,Aglomerado urbano,categorica
+AGLOMERADO_17,AGLOMERADO,Sí,Aglomerado urbano,categorica
+AGLOMERADO_18,AGLOMERADO,Sí,Aglomerado urbano,categorica
+AGLOMERADO_19,AGLOMERADO,Sí,Aglomerado urbano,categorica
+AGLOMERADO_20,AGLOMERADO,Sí,Aglomerado urbano,categorica
+AGLOMERADO_22,AGLOMERADO,Sí,Aglomerado urbano,categorica
+AGLOMERADO_23,AGLOMERADO,No,Aglomerado urbano,categorica
+AGLOMERADO_25,AGLOMERADO,Sí,Aglomerado urbano,categorica
+AGLOMERADO_26,AGLOMERADO,No,Aglomerado urbano,categorica
+AGLOMERADO_27,AGLOMERADO,No,Aglomerado urbano,categorica
+AGLOMERADO_29,AGLOMERADO,Sí,Aglomerado urbano,categorica
+AGLOMERADO_30,AGLOMERADO,Sí,Aglomerado urbano,categorica
+AGLOMERADO_31,AGLOMERADO,No,Aglomerado urbano,categorica
+AGLOMERADO_32,AGLOMERADO,No,Aglomerado urbano,categorica
+AGLOMERADO_33,AGLOMERADO,Sí,Aglomerado urbano,categorica
+AGLOMERADO_34,AGLOMERADO,No,Aglomerado urbano,categorica
+AGLOMERADO_36,AGLOMERADO,Sí,Aglomerado urbano,categorica
+AGLOMERADO_38,AGLOMERADO,Sí,Aglomerado urbano,categorica
+AGLOMERADO_40,AGLOMERADO,Sí,Aglomerado urbano,categorica
+AGLOMERADO_41,AGLOMERADO,Sí,Aglomerado urbano,categorica
+AGLOMERADO_42,AGLOMERADO,No,Aglomerado urbano,categorica
+AGLOMERADO_43,AGLOMERADO,Sí,Aglomerado urbano,categorica
+AGLOMERADO_44,AGLOMERADO,No,Aglomerado urbano,categorica
+AGLOMERADO_45,AGLOMERADO,Sí,Aglomerado urbano,categorica
+AGLOMERADO_46,AGLOMERADO,No,Aglomerado urbano,categorica
+AGLOMERADO_47,AGLOMERADO,No,Aglomerado urbano,categorica
+AGLOMERADO_48,AGLOMERADO,Sí,Aglomerado urbano,categorica
+AGLOMERADO_49,AGLOMERADO,No,Aglomerado urbano,categorica
+AGLOMERADO_50,AGLOMERADO,No,Aglomerado urbano,categorica
+AGLOMERADO_51,AGLOMERADO,Sí,Aglomerado urbano,categorica
+AGLOMERADO_52,AGLOMERADO,No,Aglomerado urbano,categorica
+AGLOMERADO_53,AGLOMERADO,No,Aglomerado urbano,categorica
+AGLOMERADO_54,AGLOMERADO,Sí,Aglomerado urbano,categorica
+AGLOMERADO_55,AGLOMERADO,Sí,Aglomerado urbano,categorica
+AGLOMERADO_56,AGLOMERADO,Sí,Aglomerado urbano,categorica
+AGLOMERADO_57,AGLOMERADO,No,Aglomerado urbano,categorica
+AGLOMERADO_58,AGLOMERADO,Sí,Aglomerado urbano,categorica
+AGLOMERADO_60,AGLOMERADO,No,Aglomerado urbano,categorica
+AGLOMERADO_61,AGLOMERADO,No,Aglomerado urbano,categorica
+AGLOMERADO_62,AGLOMERADO,No,Aglomerado urbano,categorica
+AGLOMERADO_91,AGLOMERADO,Sí,Aglomerado urbano,categorica
+AGLOMERADO_93,AGLOMERADO,No,Aglomerado urbano,categorica
+CH06,CH06,Sí,Edad (años cumplidos),numerica
+NIVEL_ED,NIVEL_ED,Sí,Nivel educativo,ordinal
