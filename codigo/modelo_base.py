@@ -17,17 +17,12 @@ from codigo.configuracion import PARAMETROS_RF, SEMILLA
 
 def crear_modelo_base():
     """
-    Crea una instancia del modelo Random Forest con los parámetros base.
-
-    Se utiliza class_weight='balanced' para compensar el desbalance
-    entre ocupados (clase mayoritaria) y desocupados (clase minoritaria).
-    Esto ajusta internamente los pesos de las muestras de forma
-    inversamente proporcional a la frecuencia de cada clase.
+    Crea el modelo Random Forest con los parámetros de configuracion.py.
+    Usa class_weight='balanced' para compensar el desbalance de clases.
 
     Retorna
     -------
     RandomForestClassifier
-        Modelo Random Forest configurado.
     """
     modelo = RandomForestClassifier(**PARAMETROS_RF)
 
@@ -73,25 +68,17 @@ def entrenar_modelo(modelo, X_entrenamiento, y_entrenamiento):
 def evaluar_modelo(modelo, X_prueba, y_prueba, nombre_modelo="Modelo"):
     """
     Evalúa el modelo sobre el conjunto de prueba.
-
-    Calcula múltiples métricas prestando especial atención
-    a la clase desocupada (clase 1), que es la de interés.
+    Prioriza métricas de la clase desocupada (pos_label=1).
 
     Parámetros
     ----------
     modelo : estimator
-        Modelo entrenado.
-    X_prueba : array-like
-        Variables predictoras de prueba.
-    y_prueba : array-like
-        Variable objetivo real de prueba.
+    X_prueba, y_prueba : array-like
     nombre_modelo : str
-        Nombre descriptivo del modelo para los reportes.
 
     Retorna
     -------
     dict
-        Diccionario con todas las métricas calculadas.
     """
     predicciones = modelo.predict(X_prueba)
 
@@ -152,11 +139,10 @@ def evaluar_modelo(modelo, X_prueba, y_prueba, nombre_modelo="Modelo"):
     print(f"  Real Ocupado   [{matriz[0][0]:>6}  {matriz[0][1]:>6}]")
     print(f"  Real Desocupado[{matriz[1][0]:>6}  {matriz[1][1]:>6}]")
 
-    # Interpretación de la matriz
-    vp = matriz[1][1]  # Verdadero Positivo (desocupado bien clasificado)
-    fn = matriz[1][0]  # Falso Negativo (desocupado clasificado como ocupado)
-    fp = matriz[0][1]  # Falso Positivo (ocupado clasificado como desocupado)
-    vn = matriz[0][0]  # Verdadero Negativo (ocupado bien clasificado)
+    vp = matriz[1][1]  # TP
+    fn = matriz[1][0]  # FN
+    fp = matriz[0][1]  # FP
+    vn = matriz[0][0]  # TN
 
     print(f"\n  Interpretación:")
     print(f"  VP (desocupado → desocupado): {vp}")

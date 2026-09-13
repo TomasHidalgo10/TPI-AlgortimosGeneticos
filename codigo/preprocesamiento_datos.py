@@ -146,27 +146,16 @@ def preparar_predictores(datos):
     """
     Selecciona y prepara las variables predictoras.
 
-    Para NIVEL_ED se aplica codificación ordinal, ya que existe una
-    jerarquía natural en los niveles educativos (sin instrucción < primaria
-    incompleta < primaria completa < ... < superior completa).
-
-    Justificación de la decisión sobre NIVEL_ED:
-    Se trata como variable ordinal porque los niveles educativos tienen
-    un orden intrínseco que representa mayor formación. Tratarla como
-    categórica pura descartaría esta información de orden, lo cual
-    no sería adecuado metodológicamente.
+    NIVEL_ED se trata como ordinal por su jerarquía natural
+    (sin instrucción < primaria < secundaria < superior).
 
     Parámetros
     ----------
     datos : pandas.DataFrame
-        DataFrame limpio.
 
     Retorna
     -------
-    pandas.DataFrame
-        DataFrame con predictores seleccionados.
-    pandas.Series
-        Serie con la variable objetivo.
+    pandas.DataFrame, pandas.Series
     """
     # Seleccionar variables predictoras disponibles
     variables_disponibles = [v for v in NOMBRES_PREDICTORAS if v in datos.columns]
@@ -196,25 +185,17 @@ def preparar_predictores(datos):
 
 def crear_pipeline_codificacion(predictores):
     """
-    Crea un pipeline de codificación con ColumnTransformer de scikit-learn.
-
-    Las variables categóricas se codifican con OneHotEncoder.
-    Las variables numéricas y ordinales se pasan sin modificar.
-
-    Esto garantiza que no haya data leakage, ya que el encoder se ajusta
-    únicamente con los datos de entrenamiento.
+    Crea el ColumnTransformer para codificación.
+    OHE para categóricas; numéricas y ordinales pasan sin modificar.
+    El encoder se ajusta solo con datos de entrenamiento (sin leakage).
 
     Parámetros
     ----------
     predictores : pandas.DataFrame
-        DataFrame con las variables predictoras.
 
     Retorna
     -------
     sklearn.compose.ColumnTransformer
-        Transformador listo para ajustar con fit_transform.
-    list
-        Lista de nombres de las columnas resultantes.
     """
     columnas_categoricas = [c for c in VARIABLES_CATEGORICAS if c in predictores.columns]
     columnas_numericas = [c for c in VARIABLES_NUMERICAS if c in predictores.columns]
@@ -254,25 +235,17 @@ def crear_pipeline_codificacion(predictores):
 
 def dividir_datos(predictores, objetivo):
     """
-    Divide los datos en conjuntos de entrenamiento y prueba.
-
-    Se utiliza división estratificada para mantener la proporción
-    entre ocupados y desocupados en ambos conjuntos.
-
-    Esto es especialmente importante dado el desbalance de clases
-    (aproximadamente 94% ocupados vs 6% desocupados).
+    Divide en train/test con estratificación para mantener
+    la proporción de clases (importante con desbalance ~94/6%).
 
     Parámetros
     ----------
     predictores : pandas.DataFrame
-        Variables predictoras.
     objetivo : pandas.Series
-        Variable objetivo binaria.
 
     Retorna
     -------
-    tuple
-        (X_entrenamiento, X_prueba, y_entrenamiento, y_prueba)
+    tuple : (X_entrenamiento, X_prueba, y_entrenamiento, y_prueba)
     """
     X_entrenamiento, X_prueba, y_entrenamiento, y_prueba = train_test_split(
         predictores,
