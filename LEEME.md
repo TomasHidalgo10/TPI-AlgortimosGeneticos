@@ -87,8 +87,10 @@ tpi-Ageneticos/
 ├── ejecutar_proyecto.py               # Script principal de ejecución
 ├── generar_reporte_docx.py            # Generador de reporte Word (.docx)
 ├── requisitos.txt                     # Dependencias de Python
-└── LEEME.md                           # Este archivo
+├── LEEME.md                           # Documentación en español
+└── README.md                          # Presentación principal para GitHub
 ```
+
 
 ---
 

@@ -29,6 +29,7 @@ import sys
 import os
 import json
 import time
+from typing import Any, Dict
 import numpy as np
 import pandas as pd
 
@@ -39,6 +40,7 @@ if hasattr(sys.stderr, 'reconfigure'):
 
 # Agregar el directorio raíz al path
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+
 
 from codigo.configuracion import (
     RUTA_METRICAS, RUTA_MODELOS, RUTA_GRAFICOS,
@@ -237,13 +239,21 @@ def main():
     print("=" * 70)
 
 
-def guardar_resultados(metricas_base, metricas_opt, resultado_ag,
-                        tabla_comparacion, tabla_variables,
-                        estadisticas_filtrado, importancias_base, importancias_opt):
-    """Guarda todos los resultados en archivos."""
+def guardar_resultados(
+    metricas_base: Dict[str, Any],
+    metricas_opt: Dict[str, Any],
+    resultado_ag: Dict[str, Any],
+    tabla_comparacion: pd.DataFrame,
+    tabla_variables: pd.DataFrame,
+    estadisticas_filtrado: Dict[str, Any],
+    importancias_base: Dict[str, float],
+    importancias_opt: Dict[str, float]
+) -> None:
+    """Guarda todos los resultados en archivos CSV, JSON y carpetas de resultados."""
 
     os.makedirs(RUTA_METRICAS, exist_ok=True)
     os.makedirs(RUTA_MODELOS, exist_ok=True)
+
 
     # 1. Tabla comparativa
     ruta_comparacion = os.path.join(RUTA_METRICAS, 'comparacion_modelos.csv')

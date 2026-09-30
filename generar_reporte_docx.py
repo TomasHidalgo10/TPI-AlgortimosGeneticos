@@ -15,6 +15,12 @@ import os
 import sys
 import csv
 from datetime import datetime
+from typing import Any, Dict, List, Optional, Tuple
+
+if hasattr(sys.stdout, 'reconfigure'):
+    sys.stdout.reconfigure(encoding='utf-8')
+if hasattr(sys.stderr, 'reconfigure'):
+    sys.stderr.reconfigure(encoding='utf-8')
 
 from docx import Document
 from docx.shared import Inches, Pt, Cm, RGBColor
@@ -35,15 +41,16 @@ RUTA_SALIDA = os.path.join(DIRECTORIO_RAIZ, 'resultados')
 # FUNCIONES DE CARGA DE DATOS
 # ============================================================
 
-def cargar_json(ruta):
+def cargar_json(ruta: str) -> Dict[str, Any]:
     with open(ruta, 'r', encoding='utf-8') as f:
         return json.load(f)
 
 
-def cargar_csv(ruta):
+def cargar_csv(ruta: str) -> List[Dict[str, str]]:
     with open(ruta, 'r', encoding='utf-8-sig') as f:
         reader = csv.DictReader(f)
         return list(reader)
+
 
 
 def cargar_todos_los_datos():

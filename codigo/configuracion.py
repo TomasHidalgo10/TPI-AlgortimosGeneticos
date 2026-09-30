@@ -5,6 +5,8 @@ y constantes generales utilizadas en todo el proyecto.
 """
 
 import os
+from typing import Any, Dict, List, Tuple
+
 
 # ============================================================
 # RUTAS DEL PROYECTO

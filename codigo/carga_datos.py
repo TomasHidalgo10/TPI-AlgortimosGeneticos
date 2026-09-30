@@ -4,8 +4,10 @@ Se encarga de leer los microdatos de la EPH desde el archivo TXT
 y realizar las validaciones iniciales.
 """
 
-import pandas as pd
 import os
+from typing import Any, Dict, Optional, Tuple
+import pandas as pd
+
 from codigo.configuracion import (
     ARCHIVO_PERSONAS, SEPARADOR_CSV, VARIABLE_ESTADO,
     VALOR_OCUPADO, VALOR_DESOCUPADO, NOMBRE_TARGET,
@@ -13,7 +15,7 @@ from codigo.configuracion import (
 )
 
 
-def cargar_datos_personas(ruta_archivo=None):
+def cargar_datos_personas(ruta_archivo: Optional[str] = None) -> pd.DataFrame:
     """
     Carga los microdatos individuales de la EPH desde el archivo TXT.
 
@@ -45,7 +47,8 @@ def cargar_datos_personas(ruta_archivo=None):
     return datos
 
 
-def filtrar_pea(datos):
+def filtrar_pea(datos: pd.DataFrame) -> Tuple[pd.DataFrame, Dict[str, Any]]:
+
     """
     Filtra la Población Económicamente Activa (PEA).
 
@@ -110,7 +113,7 @@ def filtrar_pea(datos):
     return datos_pea, estadisticas
 
 
-def crear_target(datos_pea):
+def crear_target(datos_pea: pd.DataFrame) -> pd.DataFrame:
     """
     Crea la variable objetivo binaria 'desocupado'.
 
@@ -140,7 +143,8 @@ def crear_target(datos_pea):
     return datos_pea
 
 
-def mostrar_info_variables(datos_pea):
+def mostrar_info_variables(datos_pea: pd.DataFrame) -> None:
+
     """
     Muestra información detallada sobre las variables predictoras
     candidatas según la documentación oficial del INDEC.

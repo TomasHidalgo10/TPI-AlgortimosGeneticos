@@ -4,14 +4,23 @@ Compara el modelo base con el modelo optimizado
 mediante Algoritmo Genético.
 """
 
+from typing import Any, Dict, List, Tuple, Union
 import pandas as pd
 import numpy as np
+from sklearn.ensemble import RandomForestClassifier
+
 from codigo.configuracion import PARAMETROS_RF, SEMILLA
 from codigo.modelo_base import crear_modelo_base, entrenar_modelo, evaluar_modelo
 
 
-def entrenar_modelo_optimizado(X_entrenamiento, y_entrenamiento, X_prueba, y_prueba,
-                                indices_seleccionados, nombres_columnas):
+def entrenar_modelo_optimizado(
+    X_entrenamiento: np.ndarray,
+    y_entrenamiento: Union[np.ndarray, pd.Series],
+    X_prueba: np.ndarray,
+    y_prueba: Union[np.ndarray, pd.Series],
+    indices_seleccionados: List[int],
+    nombres_columnas: List[str]
+) -> Tuple[Dict[str, Any], RandomForestClassifier, float]:
     """
     Entrena un modelo Random Forest utilizando SOLO las variables
     seleccionadas por el Algoritmo Genético.
@@ -35,7 +44,7 @@ def entrenar_modelo_optimizado(X_entrenamiento, y_entrenamiento, X_prueba, y_pru
     -------
     dict
         Métricas del modelo optimizado.
-    estimator
+    RandomForestClassifier
         Modelo entrenado.
     float
         Tiempo de entrenamiento.
@@ -66,8 +75,14 @@ def entrenar_modelo_optimizado(X_entrenamiento, y_entrenamiento, X_prueba, y_pru
     return metricas_opt, modelo_opt, tiempo
 
 
-def comparar_modelos(metricas_base, metricas_optimizado, tiempo_base, tiempo_opt,
-                     n_vars_base, n_vars_opt):
+def comparar_modelos(
+    metricas_base: Dict[str, Any],
+    metricas_optimizado: Dict[str, Any],
+    tiempo_base: float,
+    tiempo_opt: float,
+    n_vars_base: int,
+    n_vars_opt: int
+) -> pd.DataFrame:
     """
     Genera una tabla comparativa entre el modelo base y el optimizado.
 
@@ -174,8 +189,12 @@ def comparar_modelos(metricas_base, metricas_optimizado, tiempo_base, tiempo_opt
     return tabla
 
 
-def generar_tabla_variables_seleccionadas(variables_seleccionadas, nombres_columnas,
-                                          variables_predictoras_info):
+def generar_tabla_variables_seleccionadas(
+    variables_seleccionadas: List[str],
+    nombres_columnas: List[str],
+    variables_predictoras_info: Dict[str, Any]
+) -> pd.DataFrame:
+
     """
     Genera una tabla con las variables seleccionadas por el AG
     y sus descripciones según la documentación oficial del INDEC.

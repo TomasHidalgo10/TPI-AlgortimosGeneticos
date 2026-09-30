@@ -4,6 +4,7 @@ Realiza la limpieza, transformación y codificación de variables
 para su uso en los modelos de Machine Learning.
 """
 
+from typing import Any, Dict, List, Tuple
 import pandas as pd
 import numpy as np
 from sklearn.model_selection import train_test_split
@@ -18,7 +19,8 @@ from codigo.configuracion import (
 )
 
 
-def limpiar_datos(datos_pea):
+def limpiar_datos(datos_pea: pd.DataFrame) -> Tuple[pd.DataFrame, Dict[str, Any]]:
+
     """
     Realiza la limpieza de las variables predictoras según la
     documentación oficial del INDEC.
@@ -142,7 +144,7 @@ def limpiar_datos(datos_pea):
     return datos, estadisticas_limpieza
 
 
-def preparar_predictores(datos):
+def preparar_predictores(datos: pd.DataFrame) -> Tuple[pd.DataFrame, pd.Series]:
     """
     Selecciona y prepara las variables predictoras.
 
@@ -183,7 +185,7 @@ def preparar_predictores(datos):
     return predictores, objetivo
 
 
-def crear_pipeline_codificacion(predictores):
+def crear_pipeline_codificacion(predictores: pd.DataFrame) -> ColumnTransformer:
     """
     Crea el ColumnTransformer para codificación.
     OHE para categóricas; numéricas y ordinales pasan sin modificar.
@@ -233,7 +235,7 @@ def crear_pipeline_codificacion(predictores):
     return codificador
 
 
-def dividir_datos(predictores, objetivo):
+def dividir_datos(predictores: pd.DataFrame, objetivo: pd.Series) -> Tuple[pd.DataFrame, pd.DataFrame, pd.Series, pd.Series]:
     """
     Divide en train/test con estratificación para mantener
     la proporción de clases (importante con desbalance ~94/6%).
@@ -273,7 +275,7 @@ def dividir_datos(predictores, objetivo):
     return X_entrenamiento, X_prueba, y_entrenamiento, y_prueba
 
 
-def ejecutar_preprocesamiento_completo(datos_pea):
+def ejecutar_preprocesamiento_completo(datos_pea: pd.DataFrame) -> Dict[str, Any]:
     """
     Ejecuta todo el flujo de preprocesamiento de datos.
 
@@ -326,7 +328,8 @@ def ejecutar_preprocesamiento_completo(datos_pea):
     }
 
 
-def obtener_nombres_columnas(codificador, X_referencia):
+def obtener_nombres_columnas(codificador: ColumnTransformer, X_referencia: pd.DataFrame) -> List[str]:
+
     """
     Obtiene los nombres de las columnas resultantes después de la codificación.
 

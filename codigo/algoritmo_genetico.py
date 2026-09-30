@@ -12,8 +12,10 @@ Fitness:
 """
 
 import random
-import numpy as np
 import time
+from typing import Any, Callable, Dict, List, Optional, Tuple, Union
+import numpy as np
+import pandas as pd
 from deap import base, creator, tools, algorithms
 from sklearn.ensemble import RandomForestClassifier
 from sklearn.model_selection import StratifiedKFold, cross_val_score
@@ -24,7 +26,13 @@ from codigo.configuracion import (
 )
 
 
-def crear_funcion_fitness(X_entrenamiento, y_entrenamiento, parametros_rf, folds_cv, penalizacion):
+def crear_funcion_fitness(
+    X_entrenamiento: np.ndarray,
+    y_entrenamiento: Union[np.ndarray, pd.Series],
+    parametros_rf: Dict[str, Any],
+    folds_cv: int,
+    penalizacion: float
+) -> Callable[[List[int]], Tuple[float]]:
     """
     Crea la función de fitness para el Algoritmo Genético.
 
@@ -53,6 +61,7 @@ def crear_funcion_fitness(X_entrenamiento, y_entrenamiento, parametros_rf, folds
     cv_estratificada = StratifiedKFold(n_splits=folds_cv, shuffle=True, random_state=SEMILLA)
 
     def evaluar_individuo(individuo):
+
         # Obtener variables seleccionadas
         indices = [i for i, gen in enumerate(individuo) if gen == 1]
 
@@ -98,7 +107,7 @@ def crear_funcion_fitness(X_entrenamiento, y_entrenamiento, parametros_rf, folds
     return evaluar_individuo
 
 
-def configurar_algoritmo_genetico(n_variables, parametros_ag):
+def configurar_algoritmo_genetico(n_variables: int, parametros_ag: Dict[str, Any]) -> base.Toolbox:
     """
     Configura el Algoritmo Genético utilizando DEAP.
 
@@ -158,7 +167,12 @@ def configurar_algoritmo_genetico(n_variables, parametros_ag):
     return toolbox
 
 
-def ejecutar_algoritmo_genetico(X_entrenamiento, y_entrenamiento, nombres_columnas):
+def ejecutar_algoritmo_genetico(
+    X_entrenamiento: np.ndarray,
+    y_entrenamiento: Union[np.ndarray, pd.Series],
+    nombres_columnas: List[str]
+) -> Dict[str, Any]:
+
     """
     Ejecuta el Algoritmo Genético completo para selección de variables.
 

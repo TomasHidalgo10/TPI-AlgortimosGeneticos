@@ -5,7 +5,9 @@ para la comparación con el modelo optimizado.
 """
 
 import time
+from typing import Any, Dict, List, Optional, Tuple, Union
 import numpy as np
+import pandas as pd
 from sklearn.ensemble import RandomForestClassifier
 from sklearn.metrics import (
     accuracy_score, precision_score, recall_score, f1_score,
@@ -15,7 +17,7 @@ from sklearn.metrics import (
 from codigo.configuracion import PARAMETROS_RF, SEMILLA
 
 
-def crear_modelo_base():
+def crear_modelo_base() -> RandomForestClassifier:
     """
     Crea el modelo Random Forest con los parámetros de configuracion.py.
     Usa class_weight='balanced' para compensar el desbalance de clases.
@@ -36,13 +38,17 @@ def crear_modelo_base():
     return modelo
 
 
-def entrenar_modelo(modelo, X_entrenamiento, y_entrenamiento):
+def entrenar_modelo(
+    modelo: RandomForestClassifier,
+    X_entrenamiento: Union[np.ndarray, pd.DataFrame],
+    y_entrenamiento: Union[np.ndarray, pd.Series]
+) -> Tuple[RandomForestClassifier, float]:
     """
     Entrena el modelo con los datos de entrenamiento.
 
     Parámetros
     ----------
-    modelo : estimator
+    modelo : RandomForestClassifier
         Modelo de scikit-learn.
     X_entrenamiento : array-like
         Variables predictoras de entrenamiento.
@@ -51,7 +57,7 @@ def entrenar_modelo(modelo, X_entrenamiento, y_entrenamiento):
 
     Retorna
     -------
-    estimator
+    RandomForestClassifier
         Modelo entrenado.
     float
         Tiempo de entrenamiento en segundos.
@@ -65,14 +71,19 @@ def entrenar_modelo(modelo, X_entrenamiento, y_entrenamiento):
     return modelo, tiempo_entrenamiento
 
 
-def evaluar_modelo(modelo, X_prueba, y_prueba, nombre_modelo="Modelo"):
+def evaluar_modelo(
+    modelo: RandomForestClassifier,
+    X_prueba: Union[np.ndarray, pd.DataFrame],
+    y_prueba: Union[np.ndarray, pd.Series],
+    nombre_modelo: str = "Modelo"
+) -> Dict[str, Any]:
     """
     Evalúa el modelo sobre el conjunto de prueba.
     Prioriza métricas de la clase desocupada (pos_label=1).
 
     Parámetros
     ----------
-    modelo : estimator
+    modelo : RandomForestClassifier
     X_prueba, y_prueba : array-like
     nombre_modelo : str
 
@@ -160,7 +171,10 @@ def evaluar_modelo(modelo, X_prueba, y_prueba, nombre_modelo="Modelo"):
     return metricas
 
 
-def obtener_importancia_variables(modelo, nombres_columnas):
+def obtener_importancia_variables(
+    modelo: RandomForestClassifier,
+    nombres_columnas: List[str]
+) -> Dict[str, float]:
     """
     Obtiene la importancia de las variables del modelo Random Forest.
 
@@ -192,3 +206,4 @@ def obtener_importancia_variables(modelo, nombres_columnas):
         print(f"  {nombre:<30} {imp:.4f} {barra}")
 
     return importancia_ordenada
+

@@ -5,17 +5,19 @@ incluyendo distribuciones, evolución del AG, comparaciones
 y matrices de confusión.
 """
 
+import os
+from typing import Any, Dict, List, Optional, Sequence, Union
 import matplotlib
 matplotlib.use('Agg')  # Backend no interactivo para guardar sin mostrar
 import matplotlib.pyplot as plt
 import seaborn as sns
 import numpy as np
-import os
+import pandas as pd
 
 from codigo.configuracion import COLORES, TAMANO_FIGURA, DPI_GRAFICOS, RUTA_GRAFICOS, FORMATO_GRAFICOS
 
 
-def configurar_estilo():
+def configurar_estilo() -> None:
     """Configura el estilo global de los gráficos."""
     plt.rcParams.update({
         'figure.figsize': TAMANO_FIGURA,
@@ -32,7 +34,7 @@ def configurar_estilo():
     sns.set_style("whitegrid")
 
 
-def guardar_grafico(nombre_archivo):
+def guardar_grafico(nombre_archivo: str) -> str:
     """Guarda el gráfico actual en la carpeta de resultados."""
     os.makedirs(RUTA_GRAFICOS, exist_ok=True)
     ruta = os.path.join(RUTA_GRAFICOS, f"{nombre_archivo}.{FORMATO_GRAFICOS}")
@@ -42,7 +44,11 @@ def guardar_grafico(nombre_archivo):
     return ruta
 
 
-def grafico_distribucion_clases(y, titulo="Distribución de la condición laboral"):
+def grafico_distribucion_clases(
+    y: Union[Sequence[int], np.ndarray, pd.Series],
+    titulo: str = "Distribución de la condición laboral"
+) -> str:
+
     """
     Genera un gráfico de barras con la distribución de ocupados y desocupados.
 
@@ -83,7 +89,7 @@ def grafico_distribucion_clases(y, titulo="Distribución de la condición labora
     return guardar_grafico('01_distribucion_clases')
 
 
-def grafico_evolucion_fitness(registro_evolucion):
+def grafico_evolucion_fitness(registro_evolucion: Dict[str, Any]) -> str:
     """
     Genera el gráfico de evolución del fitness del Algoritmo Genético.
 
@@ -118,7 +124,7 @@ def grafico_evolucion_fitness(registro_evolucion):
     return guardar_grafico('02_evolucion_fitness')
 
 
-def grafico_evolucion_variables(registro_evolucion):
+def grafico_evolucion_variables(registro_evolucion: Dict[str, Any]) -> str:
     """
     Genera el gráfico de evolución de la cantidad de variables seleccionadas.
 
@@ -134,7 +140,7 @@ def grafico_evolucion_variables(registro_evolucion):
     n_variables = registro_evolucion['n_variables_mejor']
 
     ax.plot(generaciones, n_variables, 'D-', color=COLORES['modelo_opt'],
-            linewidth=2, markersize=5)
+             linewidth=2, markersize=5)
     ax.fill_between(generaciones, n_variables, alpha=0.2, color=COLORES['modelo_opt'])
 
     ax.set_xlabel('Generación')
@@ -146,7 +152,10 @@ def grafico_evolucion_variables(registro_evolucion):
     return guardar_grafico('03_evolucion_variables')
 
 
-def grafico_comparacion_metricas(metricas_base, metricas_opt):
+def grafico_comparacion_metricas(
+    metricas_base: Dict[str, Any],
+    metricas_opt: Dict[str, Any]
+) -> str:
     """
     Genera un gráfico comparativo de métricas entre ambos modelos.
 
@@ -205,7 +214,11 @@ def grafico_comparacion_metricas(metricas_base, metricas_opt):
     return guardar_grafico('04_comparacion_metricas')
 
 
-def grafico_matriz_confusion(matriz, nombre_modelo, nombre_archivo):
+def grafico_matriz_confusion(
+    matriz: Union[np.ndarray, Sequence[Sequence[int]]],
+    nombre_modelo: str,
+    nombre_archivo: str
+) -> str:
     """
     Genera una visualización de la matriz de confusión.
 
@@ -244,7 +257,7 @@ def grafico_matriz_confusion(matriz, nombre_modelo, nombre_archivo):
     return guardar_grafico(nombre_archivo)
 
 
-def grafico_importancia_variables(importancias, top_n=20):
+def grafico_importancia_variables(importancias: Dict[str, float], top_n: int = 20) -> str:
     """
     Genera un gráfico de importancia de variables del Random Forest.
 
@@ -284,7 +297,7 @@ def grafico_importancia_variables(importancias, top_n=20):
     return guardar_grafico('07_importancia_variables')
 
 
-def grafico_analisis_exploratorio(datos_pea):
+def grafico_analisis_exploratorio(datos_pea: pd.DataFrame) -> str:
     """
     Genera gráficos de análisis exploratorio adicionales.
 
@@ -368,9 +381,15 @@ def grafico_analisis_exploratorio(datos_pea):
     return guardar_grafico('08_analisis_exploratorio')
 
 
-def generar_todas_las_visualizaciones(datos_pea, y_objetivo, registro_evolucion,
-                                       metricas_base, metricas_opt,
-                                       importancias_base):
+def generar_todas_las_visualizaciones(
+    datos_pea: pd.DataFrame,
+    y_objetivo: Union[Sequence[int], np.ndarray, pd.Series],
+    registro_evolucion: Dict[str, Any],
+    metricas_base: Dict[str, Any],
+    metricas_opt: Dict[str, Any],
+    importancias_base: Dict[str, float]
+) -> List[str]:
+
     """
     Genera todas las visualizaciones obligatorias del TP.
 
