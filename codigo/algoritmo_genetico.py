@@ -293,7 +293,7 @@ def ejecutar_algoritmo_genetico(X_entrenamiento, y_entrenamiento, nombres_column
     print(f"  Reducción: {(1 - len(variables_seleccionadas)/n_variables)*100:.1f}%")
     print(f"\n  Variables seleccionadas:")
     for var in variables_seleccionadas:
-        print(f"    ✓ {var}")
+        print(f"    * {var}")
 
     return {
         'mejor_individuo': list(mejor_individuo),

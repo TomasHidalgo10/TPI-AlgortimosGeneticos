@@ -107,4 +107,7 @@
   "datos": {
     "total_original": 71322,
     "total_pea": 33384,
-    "ocupados": 
+    "ocupados": 31474,
+    "desocupados": 1910
+  }
+}

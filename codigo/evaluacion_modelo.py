@@ -135,7 +135,7 @@ def comparar_modelos(metricas_base, metricas_optimizado, tiempo_base, tiempo_opt
             else:
                 print(f"{nombre:<30} {base_val:>15.2f} {opt_val:>15.2f} {diff:>15.2f}")
         else:
-            indicador = '↑' if diff > 0 else ('↓' if diff < 0 else '=')
+            indicador = '(+)' if diff > 0 else ('(-)' if diff < 0 else '=')
             print(f"{nombre:<30} {base_val:>15.4f} {opt_val:>15.4f} {diff:>+15.4f} {indicador}")
 
     print("-" * 75)
@@ -148,28 +148,28 @@ def comparar_modelos(metricas_base, metricas_optimizado, tiempo_base, tiempo_opt
     reduccion_vars = (1 - n_vars_opt / n_vars_base) * 100
 
     if diff_f1 > 0.01:
-        print(f"  ✓ El AG MEJORÓ el F1 de desocupados en {diff_f1:+.4f}")
+        print(f"  [+] El AG MEJORO el F1 de desocupados en {diff_f1:+.4f}")
     elif diff_f1 > -0.01:
-        print(f"  ≈ El AG MANTUVO el F1 de desocupados (diferencia: {diff_f1:+.4f})")
+        print(f"  [=] El AG MANTUVO el F1 de desocupados (diferencia: {diff_f1:+.4f})")
     else:
-        print(f"  ✗ El AG REDUJO el F1 de desocupados en {diff_f1:+.4f}")
+        print(f"  [-] El AG REDUJO el F1 de desocupados en {diff_f1:+.4f}")
 
     if diff_recall > 0.01:
-        print(f"  ✓ El AG MEJORÓ el Recall de desocupados en {diff_recall:+.4f}")
+        print(f"  [+] El AG MEJORO el Recall de desocupados en {diff_recall:+.4f}")
     elif diff_recall > -0.01:
-        print(f"  ≈ El AG MANTUVO el Recall de desocupados (diferencia: {diff_recall:+.4f})")
+        print(f"  [=] El AG MANTUVO el Recall de desocupados (diferencia: {diff_recall:+.4f})")
     else:
-        print(f"  ✗ El AG REDUJO el Recall de desocupados en {diff_recall:+.4f}")
+        print(f"  [-] El AG REDUJO el Recall de desocupados en {diff_recall:+.4f}")
 
-    print(f"  📊 Reducción de variables: {reduccion_vars:.1f}% ({n_vars_base} → {n_vars_opt})")
+    print(f"  [*] Reduccion de variables: {reduccion_vars:.1f}% ({n_vars_base} -> {n_vars_opt})")
 
     if reduccion_vars > 0 and diff_f1 >= -0.01:
-        print(f"\n  → El Algoritmo Genético logró reducir la dimensionalidad")
-        print(f"    manteniendo un desempeño comparable, lo cual valida")
-        print(f"    su utilidad para la selección de variables.")
+        print(f"\n  -> El Algoritmo Genetico logro reducir la dimensionalidad")
+        print(f"    manteniendo un desempeno comparable, lo cual valida")
+        print(f"    su utilidad para la seleccion de variables.")
     elif diff_f1 > 0.01:
-        print(f"\n  → El Algoritmo Genético logró mejorar el desempeño del modelo")
-        print(f"    al seleccionar un subconjunto más relevante de variables.")
+        print(f"\n  -> El Algoritmo Genetico logro mejorar el desempeno del modelo")
+        print(f"    al seleccionar un subconjunto mas relevante de variables.")
 
     return tabla
 

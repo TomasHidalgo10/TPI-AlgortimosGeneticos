@@ -30,7 +30,7 @@ def crear_modelo_base():
     print("Parámetros:")
     for parametro, valor in PARAMETROS_RF.items():
         print(f"  {parametro}: {valor}")
-    print("\n  → Se utiliza class_weight='balanced' para compensar")
+    print("\n  -> Se utiliza class_weight='balanced' para compensar")
     print("    el desbalance de clases (muchos más ocupados que desocupados)")
 
     return modelo
@@ -144,16 +144,16 @@ def evaluar_modelo(modelo, X_prueba, y_prueba, nombre_modelo="Modelo"):
     fp = matriz[0][1]  # FP
     vn = matriz[0][0]  # TN
 
-    print(f"\n  Interpretación:")
-    print(f"  VP (desocupado → desocupado): {vp}")
-    print(f"  FN (desocupado → ocupado):    {fn}  ← especialmente importante")
-    print(f"  FP (ocupado → desocupado):    {fp}")
-    print(f"  VN (ocupado → ocupado):       {vn}")
+    print(f"\n  Interpretacion:")
+    print(f"  VP (desocupado -> desocupado): {vp}")
+    print(f"  FN (desocupado -> ocupado):    {fn}  <- especialmente importante")
+    print(f"  FP (ocupado -> desocupado):    {fp}")
+    print(f"  VN (ocupado -> ocupado):       {vn}")
 
     if fn > 0:
-        print(f"\n  ⚠ {fn} personas realmente desocupadas fueron clasificadas")
-        print(f"    como ocupadas. Esto significa que el modelo no detectó")
-        print(f"    su situación de desocupación.")
+        print(f"\n  [!] {fn} personas realmente desocupadas fueron clasificadas")
+        print(f"    como ocupadas. Esto significa que el modelo no detecto")
+        print(f"    su situacion de desocupacion.")
 
     print(f"\n{metricas['reporte']}")
 
@@ -188,7 +188,7 @@ def obtener_importancia_variables(modelo, nombres_columnas):
     for i, (nombre, imp) in enumerate(importancia_ordenada.items()):
         if i >= 15:
             break
-        barra = '█' * int(imp * 100)
+        barra = '#' * int(imp * 100)
         print(f"  {nombre:<30} {imp:.4f} {barra}")
 
     return importancia_ordenada

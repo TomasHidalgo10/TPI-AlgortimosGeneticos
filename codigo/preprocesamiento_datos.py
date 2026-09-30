@@ -56,7 +56,7 @@ def limpiar_datos(datos_pea):
     menores_invalidos = datos['CH06'] < 0
     if menores_invalidos.sum() > 0:
         print(f"CH06: Se encontraron {menores_invalidos.sum()} registros con edad < 0 (menores de 1 año).")
-        print("  → Se eliminan porque no corresponden a la PEA.")
+        print("  -> Se eliminan porque no corresponden a la PEA.")
         registros_eliminados['CH06_negativos'] = menores_invalidos.sum()
         datos = datos[~menores_invalidos]
     else:
@@ -68,8 +68,8 @@ def limpiar_datos(datos_pea):
     if ns_nr_ch07.sum() > 0:
         print(f"CH07: Se encontraron {ns_nr_ch07.sum()} registros con código 9 (Ns/Nr).")
         porcentaje = ns_nr_ch07.sum() / len(datos) * 100
-        print(f"  → Representan el {porcentaje:.3f}% de los datos.")
-        print("  → Se eliminan por ser un porcentaje muy reducido y no aportar información.")
+        print(f"  -> Representan el {porcentaje:.3f}% de los datos.")
+        print("  -> Se eliminan por ser un porcentaje muy reducido y no aportar información.")
         registros_eliminados['CH07_ns_nr'] = ns_nr_ch07.sum()
         datos = datos[~ns_nr_ch07]
     else:
@@ -81,8 +81,8 @@ def limpiar_datos(datos_pea):
     if ns_nr_ch08.sum() > 0:
         print(f"CH08: Se encontraron {ns_nr_ch08.sum()} registros con código 9 (Ns/Nr).")
         porcentaje = ns_nr_ch08.sum() / len(datos) * 100
-        print(f"  → Representan el {porcentaje:.3f}% de los datos.")
-        print("  → Se eliminan por ser un porcentaje muy reducido.")
+        print(f"  -> Representan el {porcentaje:.3f}% de los datos.")
+        print("  -> Se eliminan por ser un porcentaje muy reducido.")
         registros_eliminados['CH08_ns_nr'] = ns_nr_ch08.sum()
         datos = datos[~ns_nr_ch08]
     else:
@@ -102,8 +102,8 @@ def limpiar_datos(datos_pea):
     if ns_nr_ch15.sum() > 0:
         print(f"CH15: Se encontraron {ns_nr_ch15.sum()} registros con código 9 (Ns/Nr).")
         porcentaje = ns_nr_ch15.sum() / len(datos) * 100
-        print(f"  → Representan el {porcentaje:.3f}% de los datos.")
-        print("  → Se eliminan por ser un porcentaje muy reducido.")
+        print(f"  -> Representan el {porcentaje:.3f}% de los datos.")
+        print("  -> Se eliminan por ser un porcentaje muy reducido.")
         registros_eliminados['CH15_ns_nr'] = ns_nr_ch15.sum()
         datos = datos[~ns_nr_ch15]
     else:
@@ -120,7 +120,7 @@ def limpiar_datos(datos_pea):
                 datos = datos.dropna(subset=[var])
                 registros_eliminados[f'{var}_nulos'] = n_nulos
             else:
-                print(f"  {var}: sin valores faltantes ✓")
+                print(f"  {var}: sin valores faltantes [OK]")
 
     registros_final = len(datos)
     total_eliminados = registros_inicial - registros_final
@@ -172,13 +172,13 @@ def preparar_predictores(datos):
         orden = VARIABLES_PREDICTORAS['NIVEL_ED']['orden_ordinal']
         predictores['NIVEL_ED'] = predictores['NIVEL_ED'].map(orden)
         print("\nNIVEL_ED codificado como ordinal:")
-        print("  7 (Sin instrucción) → 0")
-        print("  1 (Primaria incompleta) → 1")
-        print("  2 (Primaria completa) → 2")
-        print("  3 (Secundaria incompleta) → 3")
-        print("  4 (Secundaria completa) → 4")
-        print("  5 (Superior universitaria incompleta) → 5")
-        print("  6 (Superior universitaria completa) → 6")
+        print("  7 (Sin instrucción) -> 0")
+        print("  1 (Primaria incompleta) -> 1")
+        print("  2 (Primaria completa) -> 2")
+        print("  3 (Secundaria incompleta) -> 3")
+        print("  4 (Secundaria completa) -> 4")
+        print("  5 (Superior universitaria incompleta) -> 5")
+        print("  6 (Superior universitaria completa) -> 6")
 
     return predictores, objetivo
 
@@ -266,7 +266,7 @@ def dividir_datos(predictores, objetivo):
     print(f"  Ocupados: {(y_prueba == 0).sum():,} ({(y_prueba == 0).sum()/len(y_prueba)*100:.2f}%)")
     print(f"  Desocupados: {(y_prueba == 1).sum():,} ({(y_prueba == 1).sum()/len(y_prueba)*100:.2f}%)")
 
-    print("\n  → La división estratificada garantiza que ambos conjuntos")
+    print("\n  -> La división estratificada garantiza que ambos conjuntos")
     print("    mantengan la misma proporción de clases, lo cual es crítico")
     print("    cuando hay desbalance significativo.")
 
@@ -309,9 +309,9 @@ def ejecutar_preprocesamiento_completo(datos_pea):
     print(f"\n=== CODIFICACIÓN COMPLETADA ===")
     print(f"Variables originales: {X_entrenamiento.shape[1]}")
     print(f"Variables después de One-Hot Encoding: {X_entrenamiento_cod.shape[1]}")
-    print(f"  → El codificador se ajustó SOLO con datos de entrenamiento")
-    print(f"  → Los datos de prueba se transformaron con el mismo codificador")
-    print(f"  → No existe data leakage")
+    print(f"  -> El codificador se ajustó SOLO con datos de entrenamiento")
+    print(f"  -> Los datos de prueba se transformaron con el mismo codificador")
+    print(f"  -> No existe data leakage")
 
     return {
         'X_entrenamiento': X_entrenamiento_cod,

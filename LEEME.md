@@ -85,6 +85,7 @@ tpi-Ageneticos/
 │   └── informe_final.md               # Informe completo del TP
 │
 ├── ejecutar_proyecto.py               # Script principal de ejecución
+├── generar_reporte_docx.py            # Generador de reporte Word (.docx)
 ├── requisitos.txt                     # Dependencias de Python
 └── LEEME.md                           # Este archivo
 ```
@@ -104,6 +105,7 @@ Librerías utilizadas:
 - **matplotlib**: visualizaciones
 - **seaborn**: visualizaciones estadísticas
 - **deap**: implementación del Algoritmo Genético
+- **python-docx**: generación de reportes en formato Word (.docx)
 
 ---
 
@@ -127,7 +129,15 @@ Este script ejecuta todo el flujo:
 9. Genera visualizaciones
 10. Guarda todos los resultados
 
-### Opción 2: Notebook
+### Opción 2: Generación del Reporte Word (.docx)
+
+```bash
+python generar_reporte_docx.py
+```
+
+Genera un documento Word completo (`resultados/reporte_resultados.docx`) con todo el análisis, tablas de métricas y gráficos embebidos.
+
+### Opción 3: Notebook
 
 ```bash
 jupyter notebook notebooks/analisis_modelo.ipynb
@@ -147,8 +157,9 @@ El notebook contiene el mismo flujo con explicaciones detalladas paso a paso.
 | `modelo_base.py` | Random Forest con todas las variables, evaluación con múltiples métricas |
 | `algoritmo_genetico.py` | Implementación con DEAP: cromosomas binarios, fitness con CV |
 | `evaluacion_modelo.py` | Comparación modelo base vs. optimizado, tablas y análisis |
-| `visualizaciones.py` | 8 gráficos obligatorios en español |
+| `visualizaciones.py` | 8 gráficos en español |
 | `ejecutar_proyecto.py` | Orquesta todo el flujo de ejecución |
+| `generar_reporte_docx.py` | Generador del reporte de resultados en formato .docx |
 
 ---
 

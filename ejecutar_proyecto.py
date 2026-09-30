@@ -32,6 +32,11 @@ import time
 import numpy as np
 import pandas as pd
 
+if hasattr(sys.stdout, 'reconfigure'):
+    sys.stdout.reconfigure(encoding='utf-8')
+if hasattr(sys.stderr, 'reconfigure'):
+    sys.stderr.reconfigure(encoding='utf-8')
+
 # Agregar el directorio raíz al path
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 
@@ -243,13 +248,13 @@ def guardar_resultados(metricas_base, metricas_opt, resultado_ag,
     # 1. Tabla comparativa
     ruta_comparacion = os.path.join(RUTA_METRICAS, 'comparacion_modelos.csv')
     tabla_comparacion.to_csv(ruta_comparacion, index=False, encoding='utf-8-sig')
-    print(f"  ✓ Comparación guardada: {ruta_comparacion}")
-
+    print(f"  [OK] Comparación guardada: {ruta_comparacion}")
+    
     # 2. Tabla de variables seleccionadas
     ruta_variables = os.path.join(RUTA_METRICAS, 'variables_seleccionadas.csv')
     tabla_variables.to_csv(ruta_variables, index=False, encoding='utf-8-sig')
-    print(f"  ✓ Variables seleccionadas: {ruta_variables}")
-
+    print(f"  [OK] Variables seleccionadas: {ruta_variables}")
+    
     # 3. Métricas en JSON
     metricas_json = {
         'modelo_base': {
@@ -287,19 +292,19 @@ def guardar_resultados(metricas_base, metricas_opt, resultado_ag,
             'desocupados': estadisticas_filtrado['cantidad_desocupados'],
         }
     }
-
+    
     ruta_metricas_json = os.path.join(RUTA_METRICAS, 'resultados_completos.json')
     with open(ruta_metricas_json, 'w', encoding='utf-8') as f:
         json.dump(metricas_json, f, indent=2, ensure_ascii=False)
-    print(f"  ✓ Métricas JSON: {ruta_metricas_json}")
-
+    print(f"  [OK] Métricas JSON: {ruta_metricas_json}")
+    
     # 4. Evolución del AG
     evolucion_df = pd.DataFrame(resultado_ag['registro_evolucion'])
     evolucion_df = evolucion_df.drop(columns=['mejor_individuo'], errors='ignore')
     ruta_evolucion = os.path.join(RUTA_METRICAS, 'evolucion_ag.csv')
     evolucion_df.to_csv(ruta_evolucion, index=False, encoding='utf-8-sig')
-    print(f"  ✓ Evolución AG: {ruta_evolucion}")
-
+    print(f"  [OK] Evolución AG: {ruta_evolucion}")
+    
     # 5. Importancia de variables
     imp_base_df = pd.DataFrame(
         list(importancias_base.items()),
@@ -307,15 +312,15 @@ def guardar_resultados(metricas_base, metricas_opt, resultado_ag,
     )
     ruta_imp = os.path.join(RUTA_METRICAS, 'importancia_variables_base.csv')
     imp_base_df.to_csv(ruta_imp, index=False, encoding='utf-8-sig')
-    print(f"  ✓ Importancia variables: {ruta_imp}")
-
+    print(f"  [OK] Importancia variables: {ruta_imp}")
+    
     imp_opt_df = pd.DataFrame(
         list(importancias_opt.items()),
         columns=['Variable', 'Importancia']
     )
     ruta_imp_opt = os.path.join(RUTA_METRICAS, 'importancia_variables_optimizado.csv')
     imp_opt_df.to_csv(ruta_imp_opt, index=False, encoding='utf-8-sig')
-    print(f"  ✓ Importancia variables (opt): {ruta_imp_opt}")
+    print(f"  [OK] Importancia variables (opt): {ruta_imp_opt}")
 
 
 if __name__ == '__main__':

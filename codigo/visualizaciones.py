@@ -437,5 +437,5 @@ def generar_todas_las_visualizaciones(datos_pea, y_objetivo, registro_evolucion,
     print("8. Análisis exploratorio...")
     rutas.append(grafico_analisis_exploratorio(datos_pea))
 
-    print(f"\n  ✓ Se generaron {len(rutas)} gráficos en: {RUTA_GRAFICOS}")
+    print(f"\n  [OK] Se generaron {len(rutas)} gráficos en: {RUTA_GRAFICOS}")
     return rutas
